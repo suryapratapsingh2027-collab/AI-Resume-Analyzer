@@ -8,7 +8,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://ai-resume-psi-two.vercel.app',
+    origin: 'https://ai-resume-analyzer-1-trtc.onrender.com',
     credentials: true
 }))
 
