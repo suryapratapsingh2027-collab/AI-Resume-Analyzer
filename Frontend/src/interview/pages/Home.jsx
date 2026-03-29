@@ -1,5 +1,32 @@
+import React, { useState, useRef } from 'react'
+import { useInterview } from '../hooks/useInterview.js'
+import { useNavigate } from 'react-router'
+
+
+
 const Home = () => {
   // ... (Aapka existing logic same rahega)
+    const { loading, generateReport,reports } = useInterview()
+    const [ jobDescription, setJobDescription ] = useState("")
+    const [ selfDescription, setSelfDescription ] = useState("")
+    const resumeInputRef = useRef()
+
+    const navigate = useNavigate()
+
+    const handleGenerateReport = async () => {
+        const resumeFile = resumeInputRef.current.files[ 0 ]
+        const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+        navigate(`/interview/${data._id}`)
+    }
+
+    if (loading) {
+        return (
+            <main className='loading-screen'>
+                <h1>Loading your interview plan...</h1>
+            </main>
+        )
+    }
+
 
   return (
     <div className="min-h-screen bg-black text-white px-4 py-6 md:py-12">
