@@ -76,6 +76,46 @@ const Home = () => {
                             Generate Plan
                         </button>
                     </div>
+                    <div className="space-y-6">
+                        {/* Job Description Input */}
+                        <div>
+                            <label className="block mb-2 text-sm font-medium">Self Description</label>
+                            <textarea 
+                                value={selfDescription}
+                                onChange={(e) => setSelfDescription(e.target.value)}
+                                className="w-full bg-transparent border border-indigo-500/30 rounded-2xl p-4 focus:ring-2 focus:ring-indigo-500 outline-none min-h-[120px]"
+                                placeholder="Paste JD here..."
+                            />
+                        </div>
+
+                        {/* File Upload (Resume) */}
+                        <div>
+                            <label className="block mb-2 text-sm font-medium">Upload Resume</label>
+                            <input 
+                                type="file" 
+                                ref={resumeInputRef} 
+                                className="hidden" 
+                                id="resume-upload"
+                                accept=".pdf"
+                            />
+                            <label 
+                                htmlFor="resume-upload" 
+                                className="border-2 border-dashed border-indigo-500/30 rounded-2xl p-8 text-center hover:bg-white/5 transition-all cursor-pointer block"
+                            >
+                                <p className="text-gray-400 text-sm">
+                                    {resumeInputRef.current?.files?.[0] ? resumeInputRef.current.files[0].name : "Tap to upload PDF"}
+                                </p>
+                            </label>
+                        </div>
+
+                        {/* Submit Button */}
+                        <button 
+                            onClick={handleGenerateReport}
+                            className="w-full bg-indigo-600 py-4 rounded-2xl font-bold text-lg hover:bg-indigo-500 active:scale-95 transition-all"
+                        >
+                            Generate Plan
+                        </button>
+                    </div>
                 </div>
 
                 {/* RIGHT SIDE: Reports (History) */}
