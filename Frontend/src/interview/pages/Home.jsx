@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { useInterview } from '../hooks/useInterview.js'
+import { useInterview } from '../../auth/hooks/useInterview';
 import { useNavigate } from 'react-router'
 
 const Home = () => {
