@@ -1,7 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+    const handleLogout = () => {
+      
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        
+        navigate('/login');
+        window.location.reload();
+    };
 
   return (
     <nav className="sticky top-0 z-[100] bg-slate-900 text-white px-4 py-4 shadow-xl">
@@ -33,7 +44,7 @@ const Navbar = () => {
         `}>
           <a href="#home" className="w-full lg:w-auto text-center py-2 hover:text-indigo-400">Home</a>
           <a href="#report" className="w-full lg:w-auto text-center py-2 px-6 bg-slate-800 rounded-lg hover:bg-slate-700">Report</a>
-          <button className="w-full lg:w-auto py-2 px-6 bg-red-600 rounded-lg font-bold">Logout</button>
+          <button onClick={handleLogout} className="w-full cursor-pointer lg:w-auto py-2 px-6 bg-red-600 rounded-lg font-bold">Logout</button>
         </div>
       </div>
     </nav>
