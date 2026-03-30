@@ -42,7 +42,7 @@ async function userRegister(req, res) {
         maxAge: 24 * 60 * 60 * 1000
     })
 
-    res.status(201).json({
+    return res.status(201).json({
         message: 'user registered successfully',
         user:{
             id: user._id,
@@ -82,8 +82,8 @@ async function userLogin(req, res){
         sameSite: 'none',
         maxAge: 24 * 60 * 60 * 1000
     })
-    
-    res.status(200).json({
+
+    return res.status(200).json({
         message: 'user loggedin successfully',
        user: {
          id: user._id,
