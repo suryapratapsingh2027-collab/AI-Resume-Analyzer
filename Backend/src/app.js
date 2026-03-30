@@ -10,7 +10,7 @@ app.use(cookieParser())
 
 
 app.use(cors({
-    origin: "https://ai-resume-analyzer-h8rx.onrender.com",
+    origin: "https://ai-resume-analyzer-1-trtc.onrender.com",
     credentials: true
 }))
 app.use('/api/auth', authRouter)
