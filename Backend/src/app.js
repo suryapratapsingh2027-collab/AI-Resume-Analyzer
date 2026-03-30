@@ -11,7 +11,9 @@ app.use(cookieParser())
 
 app.use(cors({
     origin: "https://ai-resume-analyzer-1-trtc.onrender.com",
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }))
 app.use('/api/auth', authRouter)
 app.use('/api/interview', interviewRouter)
