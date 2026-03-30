@@ -10,7 +10,7 @@ app.use(cookieParser())
 
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://ai-resume-analyzer-h8rx.onrender.com",
     credentials: true
 }))
 app.use('/api/auth', authRouter)
