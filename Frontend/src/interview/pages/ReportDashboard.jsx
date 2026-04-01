@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useInterview } from "../../auth/hooks/useInterview";
+import LoadingSpinner, {Loading} from '../pages/Loading'
 
 const ReportDashboard = () => {
   const [active, setActive] = useState("technical");
   const {report, loading} = useInterview()
   if (loading || !report) {
   return (
-    <div className="min-h-screen flex items-center justify-center text-white">
-      Loading Report...
-    </div>
+    <LoadingSpinner />
   )
 }
 

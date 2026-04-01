@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate , Link} from 'react-router-dom'
 import {useAuth}  from '../hooks/useAuth'
+import LoadingSpinner from '../../interview/pages/Loading'
 
 const Login = () => {
 
@@ -18,8 +19,7 @@ const Login = () => {
     }
 
     if(loading){
-      return (<main><h1 className='text-white
-        '>Loading....</h1></main>)
+      return (<LoadingSpinner />)
     }
   return (
     <div className=' justify-center flex flex-col items-center h-screen'>

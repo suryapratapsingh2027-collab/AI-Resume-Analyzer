@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
+import LoadingSpinner from '../../interview/pages/Loading'
 
 const Register = () => {
 
@@ -18,7 +19,8 @@ const Register = () => {
     }
 
     if(loading){
-      return (<main><h1 className='text-white'>Loading....</h1></main>)
+      return (<LoadingSpinner />
+      )
     }
 
   return (
