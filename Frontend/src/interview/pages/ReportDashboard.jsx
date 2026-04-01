@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useInterview } from "../../auth/hooks/useInterview";
-import LoadingSpinner, {Loading} from '../pages/Loading'
+import LoadingSpinner from '../pages/Loading'
 
 const ReportDashboard = () => {
   const [active, setActive] = useState("technical");
