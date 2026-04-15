@@ -30,13 +30,10 @@ const Register = () => {
   }
 
   return (
-    // Pure page ka background color
     <div className='min-h-screen bg-slate-950 flex items-center justify-center p-4'>
       
-      {/* Main Container - Split Screen Layout */}
       <div className='bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-4xl overflow-hidden'>
         
-        {/* Left Side: Project Description (Sirf Desktop par dikhega) */}
         <div className='hidden md:flex flex-col justify-between w-1/2 bg-gradient-to-br from-indigo-600 to-violet-700 p-10 text-white'>
           <div>
             <div className='h-10 w-10 bg-white/20 rounded-lg flex items-center justify-center font-bold text-xl'>
@@ -53,7 +50,6 @@ const Register = () => {
           </div>
         </div>
 
-        {/* Right Side: Original Register Form */}
         <div className='w-full md:w-1/2 p-8 sm:p-12 flex flex-col justify-center bg-slate-900'>
           
           <div className='mb-6'>
@@ -82,7 +78,6 @@ const Register = () => {
               {errors.username && <p className='text-red-500 text-xs mt-1'>{errors.username.message}</p>}
             </div>
 
-            {/* Email Field */}
             <div className='flex flex-col'>
               <label className='text-slate-300 text-sm font-medium mb-2' htmlFor="email">
                 Email Address
@@ -103,7 +98,6 @@ const Register = () => {
               {errors.email && <p className='text-red-500 text-xs mt-1'>{errors.email.message}</p>}
             </div>
 
-            {/* Password Field */}
             <div className='flex flex-col'>
               <label className='text-slate-300 text-sm font-medium mb-2' htmlFor="password">
                 Password
@@ -124,7 +118,6 @@ const Register = () => {
                {errors.password && <p className='text-red-500 text-xs mt-1'>{errors.password.message}</p>}
             </div>
 
-            {/* Submit Button */}
             <div className='pt-2'>
               <button 
                 type='submit' 
@@ -135,7 +128,6 @@ const Register = () => {
             </div>
           </form>
 
-          {/* Login Link */}
           <p className='text-slate-400 mt-6 text-center text-sm'>
             Already have an account?{' '}
             <Link className='text-indigo-400 font-medium hover:text-indigo-300 transition-colors' to={'/login'}>

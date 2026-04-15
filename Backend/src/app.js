@@ -7,10 +7,9 @@ const cors = require('cors')
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
-//https://ai-resume-analyzer-1-trtc.onrender.com
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: "https://ai-resume-analyzer-1-trtc.onrender.com",
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization']

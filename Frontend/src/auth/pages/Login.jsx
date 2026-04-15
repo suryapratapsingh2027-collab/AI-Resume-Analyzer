@@ -5,10 +5,10 @@ import { useAuth } from '../hooks/useAuth'
 import LoadingSpinner from '../../interview/pages/Loading'
 
 const Login = () => {
-  // ✅ FIX 1: useForm() ko call kiya
+  
   const {
     register,
-    handleSubmit, // handleSubmit ko useForm se nikalna hoga
+    handleSubmit, 
     setError,
     formState: { errors },
   } = useForm();
@@ -16,11 +16,9 @@ const Login = () => {
   const navigate = useNavigate();
   const { loading, handleLogin } = useAuth();
 
-  // ✅ FIX 2: Local useState hata diya (useForm handle karega)
   
-  // ✅ FIX 3: onSubmit function ko data receive karne ke liye update kiya
   const onFormSubmit = async (data) => {
-    // 'data' mein aapka email aur password automatically hoga
+    
     const result = await handleLogin(data);
     if(result?.error){
       setError('password',{ type: 'manual', message: 'Invalid email or password'})
@@ -35,7 +33,7 @@ const Login = () => {
     <div className='min-h-screen bg-slate-950 flex items-center justify-center p-4'>
       <div className='bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl flex flex-col md:flex-row w-full max-w-4xl overflow-hidden'>
         
-        {/* Left Side: Illustration */}
+       
         <div className='hidden md:flex flex-col justify-between w-1/2 bg-gradient-to-br from-indigo-600 to-violet-700 p-10 text-white'>
           <div>
             <div className='h-10 w-10 bg-white/20 rounded-lg flex items-center justify-center font-bold text-xl'>🚀</div>
@@ -45,16 +43,15 @@ const Login = () => {
           <div className='text-sm text-indigo-200'>© 2026 AI Interview Prep.</div>
         </div>
 
-        {/* Right Side: Form */}
+        
         <div className='w-full md:w-1/2 p-8 sm:p-12 flex flex-col justify-center bg-slate-900'>
           <div className='mb-8'>
             <h1 className='text-white text-3xl font-bold mb-2'>Log In</h1>
           </div>
 
-          {/* ✅ FIX 4: handleSubmit(onFormSubmit) use karein */}
+          
           <form onSubmit={handleSubmit(onFormSubmit)} className='space-y-6'>
             
-            {/* Email Field */}
             <div className='flex flex-col'>
               <label className='text-slate-300 text-sm font-medium mb-2'>Email Address</label>
               <input 
@@ -65,11 +62,10 @@ const Login = () => {
                 className='px-4 py-3 bg-slate-800 text-white border border-slate-700 rounded-xl focus:border-indigo-500 outline-none' 
                 placeholder='name@example.com' 
               />
-              {/* ✅ Error Display */}
+              
               {errors.email && <p className='text-red-500 text-xs mt-1'>{errors.email.message}</p>}
             </div>
 
-            {/* Password Field */}
             <div className='flex flex-col'>
               <label className='text-slate-300 text-sm font-medium mb-2'>Password</label>
               <input 

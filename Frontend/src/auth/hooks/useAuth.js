@@ -5,14 +5,12 @@ import { login, register, logout, getMe } from '../services/auth.api';
 export const useAuth = () => {
     const context = useContext(AuthContext);
     
-    // Safety check: Agar context wrap nahi hai toh error throw kare
     if (!context) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
 
     const { user, setUser, loading, setLoading } = context;
 
-    // --- LOGIN HANDLER ---
     const handleLogin = async ({ email, password }) => {
         setLoading(true);
         try {
@@ -28,7 +26,6 @@ export const useAuth = () => {
             return { success: true, user: userData };
         } catch (err) {
             setUser(null);
-            // Backend se aane wala error message nikaal rahe hain
             const errorMessage = err.response?.data?.message || "Invalid email or password";
             return { success: false, error: errorMessage };
         } finally {
@@ -37,13 +34,11 @@ export const useAuth = () => {
 
     };
 
-    // --- REGISTER HANDLER ---
     const handleRegister = async ({ username, email, password }) => {
         setLoading(true);
         try {
             const data = await register({ username, email, password });
             
-            // Register ke baad aksar backend user data bhejta hai
             const userData = data.user || data; 
             setUser(userData);
             
@@ -56,7 +51,6 @@ export const useAuth = () => {
         }
     };
 
-    // --- LOGOUT HANDLER ---
     const handleLogout = async () => {
         setLoading(true);
         try {
@@ -71,14 +65,11 @@ export const useAuth = () => {
         }
     };
 
-    // --- PERSIST SESSION (Get Me) ---
     useEffect(() => {
         const getAndSetUser = async () => {
-            // App load hote hi loading true karein jab tak user check ho raha hai
             setLoading(true); 
             try {
                 const data = await getMe();
-                // Ensure karein ki data.user hai ya directly data hi user hai
                 setUser(data.user || data);
             } catch (err) {
                 setUser(null);
@@ -87,7 +78,7 @@ export const useAuth = () => {
             }
         };
         getAndSetUser();
-    }, [setUser, setLoading]); // Dependencies add karna achi practice hai
+    }, [setUser, setLoading]); 
 
     return { 
         user, 

@@ -12,17 +12,16 @@ const ReportDashboard = () => {
 }
 
   return (
-    // CHANGE: min-h-screen par flex-col lagaya hai mobile ke liye aur md:flex-row laptop ke liye
+    
     <div className="min-h-screen bg-black text-white flex flex-col md:flex-row">
 
-      {/* SIDEBAR */}
-      {/* CHANGE: Mobile pe sidebar full width rahega aur laptop (md:) pe w-64 ho jayega */}
+     
       <div className="w-full md:w-64 bg-gray-900 border-b md:border-b-0 md:border-r border-gray-800 p-5">
         <h1 className="text-xl font-bold mb-4 md:mb-6 text-indigo-400">
           AI Report
         </h1>
 
-        {/* CHANGE: Buttons mobile pe side-by-side aur laptop pe vertical ho jayenge */}
+        
         <nav className="flex flex-row md:flex-col gap-2 md:space-y-3 overflow-x-auto md:overflow-x-visible pb-2 md:pb-0 scrollbar-thin scrollbar-thumb-gray-800">
           {[
             { key: "technical", label: "Technical Questions" },
@@ -33,7 +32,7 @@ const ReportDashboard = () => {
             <button
               key={item.key}
               onClick={() => setActive(item.key)}
-              // CHANGE: text-xs lagaya taki mobile me fit baithe, laptop pe default rahega
+              
               className={`flex-shrink-0 text-left px-3 md:px-4 py-2 rounded-lg transition text-xs md:text-sm font-medium ${
                 active === item.key
                   ? "bg-indigo-600"
@@ -46,11 +45,10 @@ const ReportDashboard = () => {
         </nav>
       </div>
 
-      {/* RIGHT CONTENT */}
-      {/* CHANGE: flex-1 ke sath-sath paddings me screen size adjust kiya hai */}
+      
       <div className="flex-1 p-4 md:p-6">
 
-        {/* MATCH SCORE */}
+       
         <div className="mb-6">
           <div className="bg-red-500/20 text-red-400 px-4 py-2 rounded-lg w-[130px]"><h2 className="text-red-600 font-medium" >Match Score</h2></div>
           <p className="text-3xl md:text-4xl font-medium mt-3 md:mt-5 text-yellow-400">
@@ -58,7 +56,7 @@ const ReportDashboard = () => {
           </p>
         </div>
 
-        {/* TECHNICAL */}
+       
         {active === "technical" && (
           <div className="space-y-4">
             {report.technicalQuestions.map((q, i) => (
@@ -77,7 +75,7 @@ const ReportDashboard = () => {
           </div>
         )}
 
-        {/* BEHAVIORAL */}
+        
         {active === "behavioral" && (
           <div className="space-y-4">
             {report.behavioralQuestions.map((q, i) => (
@@ -96,7 +94,7 @@ const ReportDashboard = () => {
           </div>
         )}
 
-        {/* SKILLS */}
+        
         {active === "skills" && (
           <div className="flex gap-2 md:gap-3 flex-wrap">
             {report.skillGaps.map((s, i) => (
@@ -116,7 +114,7 @@ const ReportDashboard = () => {
           </div>
         )}
 
-        {/* PLAN */}
+       
         {active === "plan" && (
           <div className="space-y-4">
             {report.preprationPlan.map((d, i) => (
