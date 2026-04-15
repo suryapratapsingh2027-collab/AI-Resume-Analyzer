@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router'
 import { useAuth } from '../hooks/useAuth'
 import LoadingSpinner from '../../interview/pages/Loading'
+import { useForm } from 'react-hook-form'
 
 const Register = () => {
   const navigate = useNavigate()
@@ -12,9 +13,15 @@ const Register = () => {
 
   const { loading, handleRegister } = useAuth()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    await handleRegister({ username, email, password })
+  const {
+      register,
+      handleSubmit,
+      setError,
+      formState: { errors },
+    } = useForm();
+
+  const onSubmitForm = async (e) => {
+   await handleRegister({ username, email, password })
     navigate('/')
   }
 
@@ -54,14 +61,16 @@ const Register = () => {
             <p className='text-slate-400 text-sm'>Fill in the details below to get started.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className='space-y-5'>
+          <form onSubmit={handleSubmit(onSubmitForm)} className='space-y-5'>
             
             {/* Username Field */}
             <div className='flex flex-col'>
               <label className='text-slate-300 text-sm font-medium mb-2' htmlFor="username">
                 Username
               </label>
-              <input 
+              <input {...register("username", { 
+                  required: "Username is required",
+                })}
                 value={username} 
                 onChange={(e) => { setUsername(e.target.value) }} 
                 className='px-4 py-3 bg-slate-800 text-white outline-none border border-slate-700 rounded-xl focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 placeholder-slate-500' 
@@ -69,8 +78,8 @@ const Register = () => {
                 id='username' 
                 name='username' 
                 placeholder='Enter username' 
-                required
               />
+              {errors.username && <p className='text-red-500 text-xs mt-1'>{errors.username.message}</p>}
             </div>
 
             {/* Email Field */}
@@ -79,6 +88,10 @@ const Register = () => {
                 Email Address
               </label>
               <input 
+              {...register("email", { 
+                  required: "Email is required",
+                  pattern: { value: /^\S+@\S+$/i, message: "Invalid email format" }
+                })}
                 value={email} 
                 onChange={(e) => { setEmail(e.target.value) }} 
                 className='px-4 py-3 bg-slate-800 text-white outline-none border border-slate-700 rounded-xl focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 placeholder-slate-500' 
@@ -86,8 +99,8 @@ const Register = () => {
                 id='email' 
                 name='email' 
                 placeholder='name@example.com' 
-                required
               />
+              {errors.email && <p className='text-red-500 text-xs mt-1'>{errors.email.message}</p>}
             </div>
 
             {/* Password Field */}
@@ -96,6 +109,10 @@ const Register = () => {
                 Password
               </label>
               <input 
+              {...register("password", { 
+                  required: "Password is required",
+                  minLength: { value: 8, message: "Min length 8 chars" }
+                })}
                 value={password} 
                 onChange={(e) => { setPassword(e.target.value) }} 
                 className='px-4 py-3 bg-slate-800 text-white outline-none border border-slate-700 rounded-xl focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all duration-200 placeholder-slate-500' 
@@ -103,8 +120,8 @@ const Register = () => {
                 id='password' 
                 name='password' 
                 placeholder='••••••••' 
-                required
               />
+               {errors.password && <p className='text-red-500 text-xs mt-1'>{errors.password.message}</p>}
             </div>
 
             {/* Submit Button */}
